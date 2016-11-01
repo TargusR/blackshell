@@ -1,5 +1,7 @@
 #include "ofApp.h"
 
+#define RECONNECT_TIME 400
+
 void ofApp::paletteSelector(int paletteN){
     ofColor newColor;
     Palette.clear();
@@ -205,6 +207,20 @@ void ofApp::setup(){
     //newBall.setup(ceil(6 * factor), 100 + ceil(300 * factor));
     //Balls.push_back(newBall);
     //}
+    
+    // our send and recieve strings
+    msgTx	= "";
+    msgRx	= "";
+    
+    // connect to the server - if this fails or disconnects
+    // we'll check every few seconds to see if the server exists
+    tcpClient.setup("127.0.0.1", 1337);
+    
+    // optionally set the delimiter to something else.  The delimiter in the client and the server have to be the same
+    tcpClient.setMessageDelimiter("\r\n");
+    
+    connectTime = 0;
+    deltaTime = 0;
 }
 
 //--------------------------------------------------------------
@@ -232,6 +248,28 @@ void ofApp::update(){
             Particles.pop_back();
             sizeParticles--;
         }
+    }
+    
+    if(tcpClient.isConnected()){
+        // we are connected - lets try to receive from the server
+        cout << "TCP esta conectado" << endl;
+        string str = tcpClient.receive();
+        if( str.length() > 0 ){
+            msgRx = str;
+            cout << "Obtuvimos algo." << endl;
+            cout << msgRx << endl;
+        }
+    }else{
+        cout << "TCP esta desconectado" << endl;
+        msgTx = "";
+        // if we are not connected lets try and reconnect every 5 seconds
+        deltaTime = ofGetElapsedTimeMillis() - connectTime;
+        
+        if( deltaTime > 5000 ){
+            tcpClient.setup("127.0.0.1", 1337);
+            connectTime = ofGetElapsedTimeMillis();
+        }
+        
     }
 }
 
