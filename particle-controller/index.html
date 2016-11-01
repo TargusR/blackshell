@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <!-- Insert this line above script imports  -->
+    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Insert this line after script imports -->
+    <script>if (window.module) module = window.module;</script>
+    <script>
+    $(document).ready( function() {
+      console.log("x: " + $(window).width() + " y: " + $(window).height());
+        $(document).click( function(e) {
+          console.log(e.pageX);
+          console.log(e.pageY);
+          $("#cx").html(e.pageX);
+          $("#cy").html(e.pageY);
+        });
+      });
+    </script>
+    <style type="text/css">
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: arial;
+        width: 100vw;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        /*background-color: rgba(0, 0, 0, .01);
+        border: 1px solid rgba(0, 0, 0, .01);*/
+        box-sizing: border-box;
+        border: 1px solid rgba(0, 0, 0, .01);
+      }
+      .inner-block {
+        width: 100%;
+        height: 100%;
+      }
+      .advice {
+        width: 400px;
+        height: auto;
+        background: #E8E8E8;
+        margin: 10px;
+        padding: 30px;
+        border-radius: 10px;
+      }
+      .advice h1, .advice h2 {
+        font-weight: normal;
+        font-size: 1em;
+        display: block;
+        padding: 0;
+        margin: 0;
+        line-height: 30px;
+      }
+      .advice h2 {
+        font-size: 0.6em;
+      }
+
+    </style>
+  </head>
+  <body>
+  <div class="inner-block">
+    <div class="advice">
+      <h1>Coordenadas</h1>
+      <h2>x: <span id="cx"></span></h2>
+      <h2>y: <span id="cy"></span></h2>
+      <span id="last-command"></span>
+    </div>
+  </div>
+    <!-- All of the Node.js APIs are available in this renderer process. -->
+    <!--We are using node <script>document.write(process.versions.node)</script>, -->
+    <!--Chromium <script>document.write(process.versions.chrome)</script>, -->
+    <!--and Electron <script>document.write(process.versions.electron)</script>. -->
+  </body>
+
+  <script>
+    // You can also require other files to run in this process
+    //require('./renderer.js')
+    require('./server-client.js')
+  </script>
+</html>

@@ -393,6 +393,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
 			buildSettings = {
+				"BUNDLE_LOADER[arch=*]" = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -467,7 +468,7 @@
 				E4B69B4F0A3A1720003C02F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "blackshell" */ = {
 			isa = XCConfigurationList;
@@ -476,7 +477,7 @@
 				E4B69B610A3A1757003C02F2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};
