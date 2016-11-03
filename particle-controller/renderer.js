@@ -17,22 +17,19 @@ var net = require('net');
 var HOST = '127.0.0.1';
 var PORT = 1337;
 
-/*
+
 // crear servidor
 var server = net.createServer(function(socket) {
-  socket.write('SERVER ONLINE: ' + socket.remoteAddress +':'+ socket.remotePort + '\r\n');
+  console.log('SERVER ONLINE: ' + socket.remoteAddress +':'+ socket.remotePort + '\r\n');
   socket.pipe(socket);
 
-  sock.on('data', function(data) {  
+  socket.on('data', function(data) {  
     //console.log('DATA ' + sock.remoteAddress + ': ' + data);
     // Write the data back to the socket, the client will receive it as data from the server
-    sock.write('Client said: "' + data + '"'); 
+    socket.write('You said: "' + data + '"'); 
   });
 
-});
-
-server.listen(PORT, HOST);
-*/
+}).listen(PORT, HOST);
 
 // crear cliente
 var client = net.Socket();
@@ -42,7 +39,8 @@ client.connect(PORT, HOST, function() {
     client.write('Hello, im a client');
 });
 
-$(document).click(function() {
-  client.write('HEY Apple :3');
-  console.log(server)
+$(document).click(function(e) {
+  client.write('Coordinates are: ' + e.pageX + ", " + e.pageY);
+  $("#cx").html(e.pageX);
+  $("#cy").html(e.pageY);
 })

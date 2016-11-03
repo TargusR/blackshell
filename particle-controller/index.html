@@ -4,21 +4,26 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <!-- Insert this line above script imports  -->
-    <script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+    <!--<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>-->
 
-    <script src="js/jquery.min.js"></script>
+    <!--<script src="js/jquery.min.js"></script>-->
 
     <!-- Insert this line after script imports -->
-    <script>if (window.module) module = window.module;</script>
+    <!--<script>if (window.module) module = window.module;</script>-->
+
+    <script src="js/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
+
     <script>
     $(document).ready( function() {
       console.log("x: " + $(window).width() + " y: " + $(window).height());
+        /*
         $(document).click( function(e) {
           console.log(e.pageX);
           console.log(e.pageY);
           $("#cx").html(e.pageX);
           $("#cy").html(e.pageY);
         });
+        */
       });
     </script>
     <style type="text/css">
@@ -78,7 +83,7 @@
 
   <script>
     // You can also require other files to run in this process
-    //require('./renderer.js')
-    require('./server-client.js')
+    require('./renderer.js')
+    //require('./server-client.js')
   </script>
 </html>

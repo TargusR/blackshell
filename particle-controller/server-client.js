@@ -52,3 +52,9 @@ client.on('data', function(data) {
 client.on('close', function() {
     console.log('Connection closed');
 });
+
+$(document).click(function(e) {
+  client.write('Coordinates are: ' + e.pageX + ", " + e.pageY);
+  $("#cx").html(e.pageX);
+  $("#cy").html(e.pageY);
+})
