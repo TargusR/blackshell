@@ -4,6 +4,7 @@
 #include "particle.h"
 #include "wconsole.h"
 #include "smartString.h"
+#include "ofxNetwork.h"
 // ALIAS BLACKSHELL
 
 // json parser
@@ -76,4 +77,11 @@ public:
     // Killing
     bool deleteStepper = false;
     bool yetDeleted = false;
+    
+    // Network
+    ofxTCPClient tcpClient;
+    string msgTx, msgRx;
+    float counter;
+    int connectTime;
+    int deltaTime;
 };

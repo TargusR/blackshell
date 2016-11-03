@@ -23,6 +23,10 @@ net.createServer(function(sock) {
     sock.on('close', function(data) {
         //console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort);
     });
+
+    setInterval(function() {
+      sock.write("Soy necio.\r\n");
+    }, 5000);
     
 }).listen(PORT, HOST);
 
@@ -42,7 +46,7 @@ client.connect(PORT, HOST, function() {
 // data is what the server sent to this socket
 client.on('data', function(data) {
     
-    console.log('DATA: ' + data);
+    console.log('CLIENT RECEIVED:: ' + data);
     // Close the client socket completely
     //client.destroy();
     
